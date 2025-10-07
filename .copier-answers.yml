@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually
+_commit: v2.2.1
+_src_path: gh:FallingColors/hexdummy
+advanced: false
+description: Hex Trace addon for Hex Casting
+display_name: Hex Trace
+github_repo: HexTrace
+github_user: DucklingVivi
+java_package: trans.ducklingvivi.hextrace
+mappings_name: Mojmap
+minecraft_version_in_mod_version: true
+mit_license: true
+mod_version: 0.1.0
+modid: hextrace

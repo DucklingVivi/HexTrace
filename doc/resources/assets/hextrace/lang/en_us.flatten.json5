@@ -1,0 +1,8 @@
+{
+  hexdoc: {
+    hextrace: {
+      title: "Hex Trace Book",
+      description: "Hex Trace addon for Hex Casting",
+    },
+  }
+}

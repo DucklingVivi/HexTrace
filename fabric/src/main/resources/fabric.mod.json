@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "hextrace",
+  "version": "${version}",
+  "name": "Hex Trace",
+  "description": "Hex Trace addon for Hex Casting",
+  "authors": [
+    "DucklingVivi"
+  ],
+  "contact": {
+    "homepage": "https://ducklingvivi.github.io/HexTrace",
+    "sources": "https://github.com/DucklingVivi/HexTrace"
+  },
+  "license": "MIT",
+  "icon": "assets/hextrace/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [{
+      "adapter": "kotlin",
+      "value": "trans.ducklingvivi.hextrace.fabric.FabricHextrace"
+    }],
+    "client": [{
+      "adapter": "kotlin",
+      "value": "trans.ducklingvivi.hextrace.fabric.FabricHextraceClient"
+    }],
+    "server": [{
+      "adapter": "kotlin",
+      "value": "trans.ducklingvivi.hextrace.fabric.FabricHextraceServer"
+    }],
+    "fabric-datagen": [{
+      "adapter": "kotlin",
+      "value": "trans.ducklingvivi.hextrace.fabric.datagen.FabricHextraceDatagen"
+    }],
+    "modmenu": [{
+      "adapter": "kotlin",
+      "value": "trans.ducklingvivi.hextrace.fabric.FabricHextraceModMenu"
+    }]
+  },
+  "mixins": [
+    "hextrace-common.mixins.json",
+    "hextrace-fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${versions.minecraft}",
+    "fabricloader": ">=${versions.fabric_loader}",
+    "fabric-api": ">=${versions.fabric_api}",
+    "fabric-language-kotlin": ">=${versions.kotlin_fabric}",
+    "architectury": ">=${versions.architectury}",
+    "hexcasting": ">=${versions.hexcasting_dependency}",
+    "cloth-config": ">=${versions.clothConfig}"
+  },
+  "suggests": {
+    "modmenu": ">=${versions.modMenu}"
+  }
+}

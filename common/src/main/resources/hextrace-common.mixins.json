@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "trans.ducklingvivi.hextrace.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "MixinDatagenMain"
+  ],
+  "plugin": "trans.ducklingvivi.hextrace.mixin.HextraceMixinConfigPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
