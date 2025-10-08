@@ -58,7 +58,7 @@ dependencies {
         exclude(group = "net.fabricmc", module = "fabric-loader")
     }
 
-    modApi(libs.hexcasting.fabric) {
+    modImplementation(libs.hexcasting.fabric) {
         // If not excluded here, calls a nonexistent method and crashes the dev client
         exclude(module = "phosphor")
     }
