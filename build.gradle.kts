@@ -17,6 +17,10 @@ architectury {
     minecraft = libs.versions.minecraft.get()
 }
 
+subprojects {
+    apply(plugin = "dev.architectury.loom")
+}
+
 tasks {
     register("runAllDatagen") {
         dependsOn(":fabric:runDatagen")
