@@ -6,7 +6,11 @@
   "client": [
   ],
   "mixins": [
-    "MixinDatagenMain"
+    "ConstMediaActionMixin",
+    "IotaMixin",
+    "IotaTypeMixin",
+    "MixinDatagenMain",
+    "OperatorBasicMixin"
   ],
   "plugin": "trans.ducklingvivi.hextrace.mixin.HextraceMixinConfigPlugin",
   "injectors": {

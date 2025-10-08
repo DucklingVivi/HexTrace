@@ -1,11 +1,13 @@
 package trans.ducklingvivi.hextrace
 
+import at.petrak.hexcasting.client.gui.GuiSpellcasting
 import net.minecraft.resources.ResourceLocation
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import trans.ducklingvivi.hextrace.config.HextraceServerConfig
 import trans.ducklingvivi.hextrace.networking.HextraceNetworking
 import trans.ducklingvivi.hextrace.registry.HextraceActions
+import trans.ducklingvivi.hextrace.registry.HextraceSpecialHanders
 
 object Hextrace {
     const val MODID = "hextrace"
@@ -21,7 +23,9 @@ object Hextrace {
         initRegistries(
             HextraceActions,
         )
+        HextraceSpecialHanders.register()
         HextraceNetworking.init()
+        GuiSpellcasting
     }
 
     fun initServer() {

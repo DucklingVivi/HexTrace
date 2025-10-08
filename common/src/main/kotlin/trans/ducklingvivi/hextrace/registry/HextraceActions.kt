@@ -7,12 +7,13 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.HexRegistries
 import at.petrak.hexcasting.common.lib.hex.HexActions
 import trans.ducklingvivi.hextrace.casting.actions.spells.OpCongratulate
+import trans.ducklingvivi.hextrace.casting.actions.spells.OpTrace
 
 object HextraceActions : HextraceRegistrar<ActionRegistryEntry>(
     HexRegistries.ACTION,
     { HexActions.REGISTRY },
 ) {
-    val CONGRATULATE = make("congratulate", HexDir.WEST, "eed", OpCongratulate)
+    val CONGRATULATE = make("trace", HexDir.WEST, "eede", OpTrace)
 
     val GREAT_CONGRATULATE = make("congratulate/great", HexDir.EAST, "qwwqqqwwqwded", OpCongratulate)
 

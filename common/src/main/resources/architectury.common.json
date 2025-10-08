@@ -1,3 +1,6 @@
 {
-  "accessWidener": "hextrace.accesswidener"
+  "accessWidener": "hextrace.accesswidener",
+  "injected_interfaces": {
+    "at/petrak/hexcasting/api/casting/iota/Iota": ["trans/ducklingvivi/hextrace/IIotaDuck"]
+  }
 }
