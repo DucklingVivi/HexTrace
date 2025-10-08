@@ -13,6 +13,7 @@ object HextraceActions : HextraceRegistrar<ActionRegistryEntry>(
 ) {
 
 
+    //  make(trace, WEST, "qqqaw")
     private fun make(name: String, startDir: HexDir, signature: String, action: Action) =
         make(name, startDir, signature) { action }
 
