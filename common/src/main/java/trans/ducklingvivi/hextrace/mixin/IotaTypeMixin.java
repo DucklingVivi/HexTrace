@@ -15,6 +15,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,8 +23,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
+
 @Mixin(value = IotaType.class, remap = false)
-public abstract class IotaTypeMixin<T extends Iota> {
+public abstract class IotaTypeMixin {
 
 
     @Unique
@@ -42,7 +44,6 @@ public abstract class IotaTypeMixin<T extends Iota> {
         }
         return tag;
     }
-
     @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;")
     private static Iota hextrace$modifyDeserialize(CompoundTag tag, ServerLevel world, Operation<Iota> original) {
         var iota = original.call(tag, world);
@@ -56,7 +57,7 @@ public abstract class IotaTypeMixin<T extends Iota> {
         return iota;
     }
 
-    @WrapMethod(method = "getDisplay", remap = false)
+    @WrapMethod(method = "getDisplay")
     private static Component hextrace$modifyGetDisplay(CompoundTag tag, Operation<Component> original){
         var base = original.call(tag);
         if(tag.contains(TRACER_TAG)) {
