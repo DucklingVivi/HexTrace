@@ -1,5 +1,6 @@
 plugins {
     id("hextrace.platform")
+    id("dev.architectury.loom")
 }
 
 architectury {

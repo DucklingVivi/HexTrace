@@ -1,5 +1,6 @@
 plugins {
     id("hextrace.minecraft")
+    id("dev.architectury.loom")
 }
 
 architectury {
