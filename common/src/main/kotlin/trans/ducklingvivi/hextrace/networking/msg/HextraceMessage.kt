@@ -57,6 +57,6 @@ sealed interface HextraceMessageCompanion<T : HextraceMessage> {
     }
 
     fun register(channel: NetworkChannel) {
-        channel.register(type, { msg, buf -> msg.encode(buf) }, ::decode, ::apply)
+        //channel.register(type, { msg, buf -> msg.encode(buf) }, ::decode, ::apply)
     }
 }
