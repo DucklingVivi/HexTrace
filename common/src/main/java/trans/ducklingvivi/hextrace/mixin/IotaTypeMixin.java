@@ -43,12 +43,7 @@ public class IotaTypeMixin {
         return tag;
     }
 
-    @Inject(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;", at=@At("HEAD"))
-    private static void hextrace$logDeserialization(CompoundTag tag, ServerLevel world, CallbackInfoReturnable<Iota> cir) {
-        // NO-OP, just to make sure the mixin is loaded
-    }
-
-    @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",remap = false)
+    @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;")
     private static Iota hextrace$modifyDeserialize(CompoundTag tag, ServerLevel world, Operation<Iota> original) {
         var iota = original.call(tag, world);
         if(tag.contains(TRACER_TAG)) {
