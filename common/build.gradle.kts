@@ -1,5 +1,3 @@
-import gradle.kotlin.dsl.accessors._2107f45011cf34878cdd9d11b4478488.modCompileOnly
-
 plugins {
     id("hextrace.minecraft")
 }
@@ -18,11 +16,10 @@ dependencies {
     modApi(libs.architectury)
     modApi(libs.clothConfig.common)
 
+    modApi(libs.inline.common)
+    modImplementation(libs.hexcasting.common)
     libs.mixinExtras.common.also {
         implementation(it)
         annotationProcessor(it)
     }
-    modApi(libs.inline.common)
-    modCompileOnly( libs.hexcasting.common)
-    modLocalRuntime( libs.hexcasting.common)
 }
