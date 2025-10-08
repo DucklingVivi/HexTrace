@@ -27,7 +27,8 @@ mod_name = "Hex Trace"
 author = "DucklingVivi"
 show_landing_text = false
 
-
+[extra.hexcasting]
+pattern_stubs = [] # fixes error when no actions exist
 # NOTE: "!Raw" means "don't apply variable interpolation to this value"
 _pattern_regex = { "!Raw"='make\("(?P<name>[^"]+)",\s*HexDir\.(?P<startdir>\w+),\s*"(?P<signature>[qweasd]+)"' }
 
