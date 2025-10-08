@@ -18,6 +18,8 @@ import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
 @Mixin(IotaType.class)
@@ -40,6 +42,12 @@ public class IotaTypeMixin {
         }
         return tag;
     }
+
+    @Inject(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;", at=@At("HEAD"))
+    private static void hextrace$logDeserialization(CompoundTag tag, ServerLevel world, CallbackInfoReturnable<Iota> cir) {
+        // NO-OP, just to make sure the mixin is loaded
+    }
+
     @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",remap = false)
     private static Iota hextrace$modifyDeserialize(CompoundTag tag, ServerLevel world, Operation<Iota> original) {
         var iota = original.call(tag, world);
