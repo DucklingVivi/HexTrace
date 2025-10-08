@@ -22,14 +22,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
-@Mixin(value = IotaType.class)
+@Mixin(value = IotaType.class, remap = false)
 public abstract class IotaTypeMixin<T extends Iota> {
 
 
     @Unique
     private static final String TRACER_TAG = "hextrace";
 
-    @WrapMethod(method = "serialize", remap = false)
+    @WrapMethod(method = "serialize")
     private static CompoundTag hextrace$modifySerialize(Iota iota, Operation<CompoundTag> original){
         var tag = original.call(iota);
         if(((IIotaDuck) iota).isTraced()) {
@@ -43,7 +43,7 @@ public abstract class IotaTypeMixin<T extends Iota> {
         return tag;
     }
 
-    @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;", remap = false)
+    @WrapMethod(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;")
     private static Iota hextrace$modifyDeserialize(CompoundTag tag, ServerLevel world, Operation<Iota> original) {
         var iota = original.call(tag, world);
         if(tag.contains(TRACER_TAG)) {
@@ -71,7 +71,7 @@ public abstract class IotaTypeMixin<T extends Iota> {
         return base;
     }
 
-    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;", remap = false), remap = false)
+    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;"))
     private static Component hextrace$modifyGetDisplayWithMaxWidth(IotaType<?> instance, Tag tag, Operation<Component> original, @Local(argsOnly = true) CompoundTag compoundTag) {
         var base = original.call(instance, tag);
         if(compoundTag.contains(TRACER_TAG)) {

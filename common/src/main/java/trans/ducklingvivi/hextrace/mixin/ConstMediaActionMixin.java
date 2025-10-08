@@ -17,7 +17,7 @@ import java.util.List;
 @Mixin(value = ConstMediaAction.DefaultImpls.class, remap = false)
 public class ConstMediaActionMixin {
 
-    @WrapOperation(method = "operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction;executeWithOpCount(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction$CostMediaActionResult;"),remap = false)
+    @WrapOperation(method = "operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction;executeWithOpCount(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction$CostMediaActionResult;"))
     private static ConstMediaAction.CostMediaActionResult hextrace$logConstMediaAction(ConstMediaAction instance, List<? extends Iota> args, CastingEnvironment castingEnvironment, Operation<ConstMediaAction.CostMediaActionResult> original) {
         var old = new ArrayList<Iota>(args);
         var result = original.call(instance, args, castingEnvironment);
