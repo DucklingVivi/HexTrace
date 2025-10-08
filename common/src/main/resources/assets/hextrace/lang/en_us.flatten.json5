@@ -1,19 +1,12 @@
 {
   hextrace: {
-    book: {
+    page: {
       patterns: {
-        spells: {
-          dummy_spells: {
-            "": "Dummy Spells",
-            congratulate: "Remove an entity from the stack, then congratulate them.",
-          },
-        },
-        great_spells: {
-          dummy_great_spells: {
-            "": "Dummy Great Spells",
-            "congratulate/great": "Same as $(l:patterns/spells/dummy_spells#hextrace:congratulate)$(action)Congratulate/$, but as a great spell.",
-          },
-        },
+        title: "Traces",
+      },
+      trace: {
+        "0": "When traced iotas are used as inputs for an action, the trace is applied to the resulting iotas. Iotas can have multiple traces applied at once.",
+        "1": "Applies the given trace to the top Iota.",
       },
     },
   },
@@ -21,24 +14,15 @@
   hexcasting: {
     action: {
       "hextrace:": {
-        congratulate: "Congratulate Player",
-        "congratulate/great": "Great Congrats!",
+        "trace": "Apply Trace",
       },
-
       // use this to add shortened versions of pattern names if the full name won't fit in the ingame book
       // you don't need to add an entry for every pattern - the above value will be used as a default
-      book: {
-        "hextrace:": {
-          congratulate: "Congratulate",
-        },
-      },
     },
   },
 
   text: {
-    hextrace: {
-      congrats: "Tell %1$s they're doing a good job!",
-    },
+
 
     "autoconfig.hextrace": {
       title: "Hex Trace Config",
