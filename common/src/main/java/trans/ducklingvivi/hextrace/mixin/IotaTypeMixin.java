@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
 @Mixin(IotaType.class)
-public class IotaTypeMixin {
+public abstract class IotaTypeMixin {
 
 
     @Unique
