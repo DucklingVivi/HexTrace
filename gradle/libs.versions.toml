@@ -102,6 +102,8 @@ clothConfig-forge  = { module="me.shedaniel.cloth:cloth-config-forge", version.r
 
 caelus = { module="top.theillusivec4.caelus:caelus-forge", version.ref="caelus" }
 
+
+inline-common = { module="com.samsthenerd.inline:inline-common", version.ref="inline" }
 inline-fabric = { module="com.samsthenerd.inline:inline-fabric", version.ref="inline" }
 inline-forge  = { module="com.samsthenerd.inline:inline-forge", version.ref="inline" }
 

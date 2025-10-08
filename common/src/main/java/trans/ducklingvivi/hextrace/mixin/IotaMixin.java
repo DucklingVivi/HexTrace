@@ -3,6 +3,7 @@ package trans.ducklingvivi.hextrace.mixin;
 
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
+import at.petrak.hexcasting.interop.inline.InlinePatternData;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.network.chat.Component;
@@ -51,8 +52,14 @@ public abstract class IotaMixin {
     @WrapMethod(method = "display")
     private Component hextrace$modifyDisplay(Operation<Component> original) {
         var base = original.call();
-        if(this.hexTrace$isTraced())
-            return base.copy().append(Component.literal(" (traced: " + this.hexTrace$getTrace() + ")"));
+        if(this.hexTrace$isTraced()) {
+            var altered = base.copy().append(Component.literal("|"));
+            var trace = this.hexTrace$getTrace();
+            for(var t : trace) {
+                altered = altered.append(new InlinePatternData(t).asText(true));
+            }
+            return altered;
+        }
         return base;
     }
 }

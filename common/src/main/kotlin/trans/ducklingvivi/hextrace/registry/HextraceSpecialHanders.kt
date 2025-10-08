@@ -2,17 +2,18 @@ package trans.ducklingvivi.hextrace.registry;
 
 import at.petrak.hexcasting.api.casting.castables.SpecialHandler;
 import at.petrak.hexcasting.common.lib.HexRegistries;
+import at.petrak.hexcasting.common.lib.hex.HexSpecialHandlers
+import at.petrak.hexcasting.xplat.IXplatAbstractions
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import trans.ducklingvivi.hextrace.Hextrace;
 import trans.ducklingvivi.hextrace.casting.actions.spells.SpecialHandlerTracer;
 
-public class HextraceSpecialHanders {
-    public static DeferredRegister<SpecialHandler.Factory<?>> REG = DeferredRegister.create(Hextrace.MODID,HexRegistries.SPECIAL_HANDLER);
-
-    public static RegistrySupplier<SpecialHandler.Factory<SpecialHandlerTracer>> TRACE_HANDLER = REG.register("tracer", SpecialHandlerTracer.Factory::new);
-
-    public static void register(){
-        REG.register();
-    }
+object  HextraceSpecialHanders: HextraceRegistrar<SpecialHandler.Factory<*>>(
+    HexRegistries.SPECIAL_HANDLER,
+    { IXplatAbstractions.INSTANCE.specialHandlerRegistry },
+){
+    var TRACE_HANDLER = register("tracer"){
+        SpecialHandlerTracer.Factory()
+    };
 }

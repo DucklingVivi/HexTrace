@@ -34,12 +34,12 @@ class SpecialHandlerTracer(val x: HexPattern) : SpecialHandler {
             env: CastingEnvironment
         ): SpecialHandlerTracer? {
             val sig = pattern.anglesSignature();
-            if(sig.startsWith("eede")) {
-                val new = sig.removePrefix("eede")
+            if(sig.startsWith("qqqaw")) {
+                val new = sig.removePrefix("qqqaw")
                 if(new.isEmpty()){
                     return null
                 }
-                return SpecialHandlerTracer(HexPattern.fromAngles(new, pattern.startDir))
+                return SpecialHandlerTracer(HexPattern.fromAngles(new, HexPattern.fromAngles("qqqaw", pattern.startDir).finalDir()))
             } else {
                 return null
             }

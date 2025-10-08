@@ -22,10 +22,10 @@ object Hextrace {
         HextraceServerConfig.init()
         initRegistries(
             HextraceActions,
+            HextraceSpecialHanders,
         )
-        HextraceSpecialHanders.register()
+
         HextraceNetworking.init()
-        GuiSpellcasting
     }
 
     fun initServer() {

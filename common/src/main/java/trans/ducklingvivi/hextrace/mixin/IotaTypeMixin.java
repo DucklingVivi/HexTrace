@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.api.utils.HexUtils;
+import at.petrak.hexcasting.interop.inline.InlinePatternData;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -55,16 +56,32 @@ public class IotaTypeMixin {
     @WrapMethod(method = "getDisplay")
     private static Component hextrace$modifyGetDisplay(CompoundTag tag, Operation<Component> original){
         var base = original.call(tag);
-        if(tag.contains(TRACER_TAG))
-            return base.copy().append(Component.literal(" (traced: " + tag.getDouble(TRACER_TAG) + ")"));
+        if(tag.contains(TRACER_TAG)) {
+            var altered = base.copy().append(Component.literal("|"));
+            ListTag tags = tag.getList(TRACER_TAG, Tag.TAG_COMPOUND);
+            for (var t : tags) {
+                var pattern = HexPattern.fromNBT(HexUtils.downcast(t, CompoundTag.TYPE));
+                altered = altered.append(new InlinePatternData(pattern).asText(true));
+            }
+            return altered;
+        }
         return base;
     }
 
     @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;"))
     private static Component hextrace$modifyGetDisplayWithMaxWidth(IotaType<?> instance, Tag tag, Operation<Component> original, @Local(argsOnly = true) CompoundTag compoundTag) {
         var base = original.call(instance, tag);
-        if(compoundTag.contains(TRACER_TAG))
-            return base.copy().append(Component.literal(" (traced: " + compoundTag.getDouble(TRACER_TAG) + ")"));
+        if(compoundTag.contains(TRACER_TAG)) {
+            var altered = base.copy().append(Component.literal("|"));
+            ListTag tags = compoundTag.getList(TRACER_TAG, Tag.TAG_COMPOUND);
+            for (var t : tags) {
+                var pattern = HexPattern.fromNBT(HexUtils.downcast(t, CompoundTag.TYPE));
+                altered = altered.append(new InlinePatternData(pattern).asText(true));
+            }
+            return altered;
+        }
         return base;
+
     }
+
 }
