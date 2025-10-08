@@ -5,7 +5,7 @@
         title: "Traces",
       },
       trace: {
-        "0": "When traced iotas are used as inputs for an action, the trace is applied to the resulting iotas. Iotas can have multiple traces applied at once.",
+        "0": "When traced iotas are used as inputs for an action, the trace is applied to the resulting iotas. Iotas can have multiple traces applied at once.\n(only two examples are shown but traces can be drawn many ways)",
         "1": "Applies the given trace to the top Iota.",
       },
     },

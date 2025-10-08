@@ -32,9 +32,9 @@ show_landing_text = false
 # NOTE: "!Raw" means "don't apply variable interpolation to this value"
 _pattern_regex = { "!Raw"='make\("(?P<name>[^"]+)",\s*HexDir\.(?P<startdir>\w+),\s*"(?P<signature>[qweasd]+)"' }
 
-[[extra.hexcasting.pattern_stubs]]
-path = "{$_common.kotlin}/registry/HextraceActions.kt"
-regex = "{^_pattern_regex}"
+#[[extra.hexcasting.pattern_stubs]]
+#path = "{$_common.kotlin}/registry/HextraceActions.kt"
+#regex = "{^_pattern_regex}"
 
 # platforms
 
