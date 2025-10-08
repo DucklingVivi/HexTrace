@@ -19,6 +19,7 @@ export_dir = "src/hexdoc_hextrace/_export/generated"
 icon = "{$_common.src}/main/resources/assets/hextrace/icon.png"
 include = [
     "hextrace",
+    "hexcasting",
     "hexdoc",
 ]
 
