@@ -14,7 +14,7 @@ import trans.ducklingvivi.hextrace.IIotaDuck;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(ConstMediaAction.DefaultImpls.class)
+@Mixin(value = ConstMediaAction.DefaultImpls.class, remap = false)
 public class ConstMediaActionMixin {
 
     @WrapOperation(method = "operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction;executeWithOpCount(Ljava/util/List;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Lat/petrak/hexcasting/api/casting/castables/ConstMediaAction$CostMediaActionResult;"),remap = false)

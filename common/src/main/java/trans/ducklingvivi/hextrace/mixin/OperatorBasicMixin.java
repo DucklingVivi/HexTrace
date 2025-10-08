@@ -13,10 +13,10 @@ import trans.ducklingvivi.hextrace.IIotaDuck;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Mixin(OperatorBasic.class)
+@Mixin(value = OperatorBasic.class, remap = false)
 public abstract class OperatorBasicMixin {
 
-    @WrapOperation(method ="operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/arithmetic/operator/OperatorBasic;apply(Ljava/lang/Iterable;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Ljava/lang/Iterable;"), remap = false)
+    @WrapOperation(method ="operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/arithmetic/operator/OperatorBasic;apply(Ljava/lang/Iterable;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Ljava/lang/Iterable;"))
     private static Iterable<Iota> hextrace$logOperator(OperatorBasic instance, Iterable<? extends Iota> iotas, CastingEnvironment castingEnvironment, Operation<Iterable<Iota>> original) {
         var result = original.call(instance, iotas, castingEnvironment);
         var old = new ArrayList<Iota>((Collection<? extends Iota>) iotas);

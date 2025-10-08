@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Mixin(Iota.class)
+@Mixin(value = Iota.class, remap = false)
 @Implements(@Interface(iface = IIotaDuck.class, prefix = "hexTrace$"))
 public abstract class IotaMixin {
     @Unique
