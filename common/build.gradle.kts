@@ -21,5 +21,8 @@ dependencies {
         annotationProcessor(it)
     }
     modImplementation(libs.inline.common)
-    modImplementation(libs.hexcasting.common)
+    libs.hexcasting.common.also {
+        modImplementation(it)
+        include(it)
+    }
 }
