@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
-@Mixin(IotaType.class)
+@Mixin(value = IotaType.class, remap = false)
 public abstract class IotaTypeMixin<T extends Iota> {
 
 
