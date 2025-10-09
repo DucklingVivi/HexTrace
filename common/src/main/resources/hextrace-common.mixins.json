@@ -13,6 +13,7 @@
     "OperatorBasicMixin"
   ],
   "plugin": "trans.ducklingvivi.hextrace.mixin.HextraceMixinConfigPlugin",
+  "refmap": "hextrace-common.refmap.json",
   "injectors": {
     "defaultRequire": 1
   }
