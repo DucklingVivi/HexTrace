@@ -73,7 +73,7 @@ public abstract class IotaTypeMixin {
         return base;
     }
 
-    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;"))
+    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;",remap = true))
     private static Component hextrace$modifyGetDisplayWithMaxWidth(IotaType<?> instance, Tag tag, Operation<Component> original, @Local(argsOnly = true) CompoundTag compoundTag) {
         var base = original.call(instance, tag);
         if(compoundTag.contains(TRACER_TAG)) {
