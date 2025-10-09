@@ -11,4 +11,4 @@ pluginManagement {
 }
 
 rootProject.name = "Hex Trace"
-include("common", "fabric", "forge")
+include("common", "fabric")

@@ -3,7 +3,7 @@ plugins {
 }
 
 architectury {
-    common("fabric", "forge")
+    common("fabric")
 }
 
 dependencies {

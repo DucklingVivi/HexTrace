@@ -46,7 +46,7 @@ public abstract class IotaTypeMixin {
         }
         return tag;
     }
-    @ModifyReturnValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at = @At("RETURN"))
+    @ModifyReturnValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at = @At("RETURN"),remap = true,require = 1)
     private static Iota hextrace$mofifyDeserialize(Iota base, @Local(argsOnly = true) CompoundTag tag) {
         if(tag.contains(TRACER_TAG)) {
             ListTag tags = tag.getList(TRACER_TAG, Tag.TAG_COMPOUND);

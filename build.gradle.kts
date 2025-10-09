@@ -24,8 +24,6 @@ subprojects {
 tasks {
     register("runAllDatagen") {
         dependsOn(":fabric:runDatagen")
-        dependsOn(":forge:runCommonDatagen")
-        dependsOn(":forge:runForgeDatagen")
     }
 }
 

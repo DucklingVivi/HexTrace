@@ -74,7 +74,6 @@ jobs:
           - client
         modloader:
           - fabric
-          - forge
         include:
           - modloader: fabric
             mc-runtime-test: fabric
