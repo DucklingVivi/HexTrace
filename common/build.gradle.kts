@@ -3,7 +3,7 @@ plugins {
 }
 
 architectury {
-    common("fabric")
+    common("fabric", "forge")
 }
 
 dependencies {
@@ -18,8 +18,9 @@ dependencies {
 
     modApi(libs.inline.common)
     modImplementation(libs.hexcasting.common)
+
     libs.mixinExtras.common.also {
-        implementation(it)
+        compileOnly(it)
         annotationProcessor(it)
     }
 }

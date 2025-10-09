@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "IotaTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

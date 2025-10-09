@@ -1,4 +1,4 @@
-package trans.ducklingvivi.hextrace.mixin;
+package trans.ducklingvivi.hextrace.forge.mixin;
 
 
 import at.petrak.hexcasting.api.casting.iota.Iota;
@@ -6,7 +6,6 @@ import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.api.utils.HexUtils;
 import at.petrak.hexcasting.interop.inline.InlinePatternData;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -16,13 +15,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import trans.ducklingvivi.hextrace.IIotaDuck;
 
 
@@ -46,7 +41,7 @@ public abstract class IotaTypeMixin {
         }
         return tag;
     }
-    @ModifyReturnValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at = @At("RETURN"),remap = true,require = 1)
+    @ModifyReturnValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at = @At("RETURN"),require = 1)
     private static Iota hextrace$mofifyDeserialize(Iota base, @Local(argsOnly = true) CompoundTag tag) {
         if(tag.contains(TRACER_TAG)) {
             ListTag tags = tag.getList(TRACER_TAG, Tag.TAG_COMPOUND);
@@ -73,7 +68,7 @@ public abstract class IotaTypeMixin {
         return base;
     }
 
-    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;",remap = true))
+    @WrapOperation(method = "getDisplayWithMaxWidth", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;display(Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;"))
     private static Component hextrace$modifyGetDisplayWithMaxWidth(IotaType<?> instance, Tag tag, Operation<Component> original, @Local(argsOnly = true) CompoundTag compoundTag) {
         var base = original.call(instance, tag);
         if(compoundTag.contains(TRACER_TAG)) {

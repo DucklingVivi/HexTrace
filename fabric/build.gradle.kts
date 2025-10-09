@@ -69,11 +69,10 @@ dependencies {
     modLocalRuntime(libs.cardinalComponents)
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
-    modLocalRuntime(libs.inline.fabric) { isTransitive = false }
+    modImplementation(libs.inline.fabric) { isTransitive = false }
 
     libs.mixinExtras.fabric.also {
-        localRuntime(it)
-        include(it)
+        implementation(it)
         annotationProcessor(it)
     }
 
