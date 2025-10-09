@@ -29,10 +29,12 @@ public abstract class OperatorBasicMixin {
         var to_apply = new ArrayList<>(op_result);
         to_apply.removeAll(iotas);
         for(Iota iota : to_apply) {
-            var traces = ((IIotaDuck) iota).getTrace();
-            op_result.forEach(
-                    i -> ((IIotaDuck) i).markTraceable(traces)
-            );
+            if (((IIotaDuck) iota).isTraced()) {
+                var traces = ((IIotaDuck) iota).getTrace();
+                op_result.forEach(
+                        i -> ((IIotaDuck) i).markTraceable(traces)
+                );
+            }
         }
         return op_result;
     }
