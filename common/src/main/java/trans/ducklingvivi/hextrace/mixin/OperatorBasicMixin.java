@@ -26,8 +26,8 @@ public abstract class OperatorBasicMixin {
         for (Iota iota : result) {
             op_result.add(iota);
         }
-        var to_apply = new ArrayList<>(op_result);
-        to_apply.removeAll(iotas);
+        var to_apply = new ArrayList<>(iotas);
+        to_apply.removeAll(op_result);
         for(Iota iota : to_apply) {
             if (((IIotaDuck) iota).isTraced()) {
                 var traces = ((IIotaDuck) iota).getTrace();
