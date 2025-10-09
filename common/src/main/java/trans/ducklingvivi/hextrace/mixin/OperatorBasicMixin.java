@@ -21,30 +21,19 @@ import java.util.List;
 public abstract class OperatorBasicMixin {
 
     @ModifyExpressionValue(method ="operate", at = @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/arithmetic/operator/OperatorBasic;apply(Ljava/lang/Iterable;Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)Ljava/lang/Iterable;"))
-    private static Iterable<Iota> hextrace$logOperator(Iterable<Iota> result , @Local(ordinal = 1) List<Iota> iotas, @Share("added") LocalRef<List<HexPattern>> trace) {
-        ArrayList<Iota> old = new ArrayList<>();
-        ArrayList<HexPattern> new_trace = new ArrayList<>();
-        for (Iota value : result) {
-            old.add(value);
+    private static Iterable<Iota> hextrace$traceOperator(Iterable<Iota> result , @Local(ordinal = 1) List<Iota> iotas) {
+        ArrayList<Iota> op_result = new ArrayList<>();
+        for (Iota iota : result) {
+            op_result.add(iota);
         }
-        result.forEach(old::remove);
-        old.forEach(iota -> {
-            if(((IIotaDuck)iota).isTraced()) {
-                new_trace.addAll(((IIotaDuck) iota).getTrace());
-            }
-        });
-        trace.set(new_trace);
-        return result;
-    }
-
-    @WrapOperation(method = "operate$lambda$1", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
-    private static boolean hextrace$applyTrace(List<?> instance, Object e, Operation<Boolean> original, @Share("added") LocalRef<List<HexPattern>> trace){
-        if(e instanceof Iota iota) {
-            ((IIotaDuck) iota).markTraceable(trace.get());
+        var to_apply = new ArrayList<>(op_result);
+        to_apply.removeAll(iotas);
+        for(Iota iota : to_apply) {
+            var traces = ((IIotaDuck) iota).getTrace();
+            op_result.forEach(
+                    i -> ((IIotaDuck) i).markTraceable(traces)
+            );
         }
-        original.call(instance,e);
-        return false;
+        return op_result;
     }
-
-
 }
