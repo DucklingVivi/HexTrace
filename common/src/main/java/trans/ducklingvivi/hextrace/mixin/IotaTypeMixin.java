@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.api.utils.HexUtils;
 import at.petrak.hexcasting.interop.inline.InlinePatternData;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -45,17 +46,16 @@ public abstract class IotaTypeMixin {
         }
         return tag;
     }
-    @ModifyExpressionValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at=
-    @At(value = "INVOKE", target = "Lat/petrak/hexcasting/api/casting/iota/IotaType;deserialize(Lnet/minecraft/nbt/Tag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",remap = true),remap = true)
-    private static Iota hextrace$modifyDeserialize(Iota original, @Local(argsOnly = true) CompoundTag tag) {
+    @ModifyReturnValue(method = "deserialize(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/server/level/ServerLevel;)Lat/petrak/hexcasting/api/casting/iota/Iota;",at = @At("RETURN"))
+    private static Iota hextrace$mofifyDeserialize(Iota base, @Local(argsOnly = true) CompoundTag tag) {
         if(tag.contains(TRACER_TAG)) {
             ListTag tags = tag.getList(TRACER_TAG, Tag.TAG_COMPOUND);
             for (var t : tags) {
                 var pattern = HexPattern.fromNBT(HexUtils.downcast(t, CompoundTag.TYPE));
-                ((IIotaDuck) original).markTraceable(pattern);
+                ((IIotaDuck) base).markTraceable(pattern);
             }
         }
-        return original;
+        return base;
     }
 
     @WrapMethod(method = "getDisplay")
